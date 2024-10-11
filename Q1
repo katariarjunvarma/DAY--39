@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+
+// Function to calculate x raised to the power n
+double pow(double x, int n) {
+    // Handle negative powers by converting to positive power and taking the reciprocal at the end
+    if (n < 0) {
+        x = 1 / x;
+        n = -n;
+    }
+    
+    double result = 1.0;
+    while (n > 0) {
+        // If n is odd, multiply the result by x
+        if (n % 2 == 1) {
+            result *= x;
+        }
+        // Square x and halve n
+        x *= x;
+        n /= 2;
+    }
+    return result;
+}
+
+int main() {
+    // Example input
+    double x = 2.00000;  // Energy generated per day (kWh)
+    int n = 10;          // Number of days
+
+    // Calculate total energy generated over n days
+    double totalEnergy = pow(x, n);
+
+    // Output the result
+    cout << "Total energy generated over " << n << " days: " << totalEnergy << " kWh" << endl;
+
+    return 0;
+}
